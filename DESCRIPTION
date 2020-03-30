@@ -1,0 +1,17 @@
+Package: rOstluft.rmweather
+Title: Meteorological normalisation with rmweather with data from rOstluft stores
+Version: 0.0.0.9000
+Authors@R: c(
+  person("Thomas", "von Allmen", email = "thomas.vonallmen@zuerich.ch", role = c("aut", "cre")),
+  person("Jörg", "Sintermann",role = c("aut")),
+  person("Ostluft", role = c("cph")))
+Description: This package creates wrapper around rmweather to create meteorological normalisation
+  using Random Forest. The role of rOstluft is to provide the input data needed.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.0
+Imports: 
+    magrittr,
+    tibble

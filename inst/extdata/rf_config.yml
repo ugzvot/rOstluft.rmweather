@@ -1,0 +1,57 @@
+# yaml Dateien als Job Konfiguration zur Erstellung des RF
+# Voraussetzung wäre sämtliche Daten sind im store aqmet
+# Dann müsste man definieren welche Outputs genau gespeichert werden
+site: Zch_Schimmelstrasse
+parameter: NOx
+interval: h1
+years: [2015,2016,2017,2018,2019,2020]
+explanatory_variables:
+  - variable: date_unix      # berechnet von rmweather::rmw_prepare_data()
+  - variable: day_julian     # berechnet von rmweather::rmw_prepare_data()
+  - variable: weekday        # berechnet von rmweather::rmw_prepare_data()
+  - variable: hour           # berechnet von rmweather::rmw_prepare_data()
+
+# variable definition
+# variable = name (in df)
+# site = measurement site, if missing config$site is taken
+# parameter = if missing == variable, but variable can be used as alias
+
+
+  - variable: Hr             # 
+    site: Zürich/Fluntern    # fr
+
+  - variable: RainSum
+    site: Zürich/Fluntern
+
+  - variable: StrGlo
+    site: Zürich/Fluntern
+
+  - variable: T
+    site: Zürich/Fluntern
+
+  - variable: p
+    site: ZH_Tiefenbrunnen
+
+  - variable: WD
+    site: Zürich/Fluntern
+
+  - variable: WVs
+    site: Zürich/Fluntern
+
+  - variable: WD_local
+    parameter: WD
+
+
+#  expression aren't supported yet
+#  - variable: year
+#    exp: lubridate::year(starttime)
+
+save:
+  path: ./Zch_Schimmelstrasse       # relative base path
+  model: TRUE
+  normalized_ts: TRUE
+  stats: TRUE
+  plot_importance: TRUE
+
+
+

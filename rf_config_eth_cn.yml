@@ -1,0 +1,51 @@
+# yaml Dateien als Job Konfiguration zur Erstellung des RF
+# Voraussetzung wäre sämtliche Daten sind im store aqmet
+# Dann müsste man definieren welche Outputs genau gespeichert werden
+site: Zch_Schimmelstrasse
+parameter: NOx
+interval: h1
+years: [2015,2016,2017,2018,2019]
+explanatory_variables:
+  - variable: date_unix      # berechnet von rmweather::rmw_prepare_data()
+  - variable: day_julian     # berechnet von rmweather::rmw_prepare_data()
+  - variable: weekday        # berechnet von rmweather::rmw_prepare_data()
+  - variable: hour        # berechnet von rmweather::rmw_prepare_data()
+
+  - variable: Hr             # Hr Zeitreihe
+    site: Zürich/Fluntern    # von einer anderen site holen
+
+  - variable: RainSum
+    site: Zürich/Fluntern
+
+  - variable: StrGlo
+    site: Zürich/Fluntern
+
+  - variable: T
+    site: Zürich/Fluntern
+
+  - variable: p
+    site: ETHZ_CHN-Gebäude
+
+  - variable: WD
+    site: ETHZ_CHN-Gebäude
+
+  - variable: WVs
+    site: ETHZ_CHN-Gebäude
+
+  - variable: WD_local
+    parameter: WD
+
+
+
+#  - variable: year
+#    exp: lubridate::year(starttime)
+
+output:
+  model: TRUE                       # gesamtes RF Model (ist halt ein bisschen Gross. ev müsste man herausfinden
+                                    # was man löschen darf
+  normalized_ts: TRUE               # normalisierte Zeitreihe
+  stats: TRUE                       # model stats wie R2, importance
+  plot_importance: TRUE             # importance plot erstellen
+
+
+
