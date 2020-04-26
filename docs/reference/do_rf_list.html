@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Collect all data from store, prepare data, train random forest — do_rf • rOstluft.rmweather</title>
+<title>Runs a list of configs — do_rf_list • rOstluft.rmweather</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Collect all data from store, prepare data, train random forest — do_rf" />
-<meta property="og:description" content="Collect all data from store, prepare data, train random forest" />
+<meta property="og:title" content="Runs a list of configs — do_rf_list" />
+<meta property="og:description" content="Runs a list of configs" />
 
 
 
@@ -103,69 +103,54 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Collect all data from store, prepare data, train random forest</h1>
+    <h1>Runs a list of configs</h1>
     
-    <div class="hidden name"><code>do_rf.Rd</code></div>
+    <div class="hidden name"><code>do_rf_list.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Collect all data from store, prepare data, train random forest</p>
+    <p>Runs a list of configs</p>
     </div>
 
-    <pre class="usage"><span class='fu'>do_rf</span>(
-  <span class='no'>config</span>,
-  <span class='no'>store</span>,
-  <span class='no'>description</span>,
-  <span class='kw'>n_trees</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>n_samples</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>prepare_data_only</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>output_dir</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-)</pre>
+    <pre class="usage"><span class='fu'>do_rf_list</span>(<span class='no'>list_of_configs</span>, <span class='no'>store</span>, <span class='no'>description</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>config</th>
-      <td><p>in list form from <code><a href='https://rdrr.io/pkg/yaml/man/read_yaml.html'>yaml::read_yaml()</a></code></p></td>
+      <th>list_of_configs</th>
+      <td><p>a list of configs to run</p></td>
     </tr>
     <tr>
       <th>store</th>
-      <td><p>containing all the data</p></td>
+      <td><p>a local store containing all the data needed for the run</p></td>
     </tr>
     <tr>
       <th>description</th>
-      <td><p>of the model. Will be saved in statistics.yml</p></td>
+      <td><p>of the models. Will be saved in statistics.yml and a run file with the stats from all models
+with sanitized desription as file name is created in <code>output_dir</code>.</p></td>
     </tr>
     <tr>
-      <th>n_trees</th>
-      <td><p>Priority order is: argument <code>n_trees</code> &gt; <code>config$n_trees</code> &gt; default <code>500</code></p></td>
-    </tr>
-    <tr>
-      <th>n_samples</th>
-      <td><p>Priority order is: argument <code>n_samples</code> &gt; <code>config$n_samples</code> &gt; default <code>50</code></p></td>
-    </tr>
-    <tr>
-      <th>prepare_data_only</th>
-      <td><p>only prepare the data and then return</p></td>
-    </tr>
-    <tr>
-      <th>output_dir</th>
-      <td><p>if not NULL all data will be saved under <code>output_dir\config$site\xxhash64</code> (xxhash64 is calculated
-from the return value from <code><a href='https://rdrr.io/pkg/rmweather/man/rmw_do_all.html'>rmweather::rmw_do_all()</a></code> with <code><a href='https://rdrr.io/pkg/digest/man/digest.html'>digest::digest()</a></code>)</p></td>
+      <th>...</th>
+      <td><p>Arguments passed on to <code><a href='do_rf.html'>do_rf</a></code></p><dl'>
+    <dt><code>config</code></dt><dd><p>in list form from <code><a href='https://rdrr.io/pkg/yaml/man/read_yaml.html'>yaml::read_yaml()</a></code></p></dd>
+    <dt><code>n_trees</code></dt><dd><p>Priority order is: argument <code>n_trees</code> &gt; <code>config$n_trees</code> &gt; default <code>500</code></p></dd>
+    <dt><code>n_samples</code></dt><dd><p>Priority order is: argument <code>n_samples</code> &gt; <code>config$n_samples</code> &gt; default <code>50</code></p></dd>
+    <dt><code>prepare_data_only</code></dt><dd><p>only prepare the data and then return</p></dd>
+    <dt><code>output_dir</code></dt><dd><p>if not NULL all data will be saved under <code>output_dir\config$site\xxhash64</code> (xxhash64 is calculated
+from the return value from <code><a href='https://rdrr.io/pkg/rmweather/man/rmw_do_all.html'>rmweather::rmw_do_all()</a></code> with <code><a href='https://rdrr.io/pkg/digest/man/digest.html'>digest::digest()</a></code>)</p></dd>
+  
+</dl></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>list with prepared data or model</p>
+    <p>list of results from do_rf</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/rmweather/man/rmw_do_all.html'>rmweather::rmw_do_all()</a></code></p></div>
+    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/rmweather/man/rmw_do_all.html'>rmweather::rmw_do_all()</a></code>, <code><a href='do_rf.html'>do_rf()</a></code></p></div>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'># TODO
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -7,9 +7,11 @@
 do_rf(
   config,
   store,
+  description,
   n_trees = NULL,
   n_samples = NULL,
-  prepare_data_only = TRUE
+  prepare_data_only = TRUE,
+  output_dir = NULL
 )
 }
 \arguments{
@@ -17,11 +19,16 @@ do_rf(
 
 \item{store}{containing all the data}
 
+\item{description}{of the model. Will be saved in statistics.yml}
+
 \item{n_trees}{Priority order is: argument \code{n_trees} > \code{config$n_trees} > default \code{500}}
 
 \item{n_samples}{Priority order is: argument \code{n_samples} > \code{config$n_samples} > default \code{50}}
 
 \item{prepare_data_only}{only prepare the data and then return}
+
+\item{output_dir}{if not NULL all data will be saved under \verb{output_dir\\config$site\\xxhash64} (xxhash64 is calculated
+from the return value from \code{\link[rmweather:rmw_do_all]{rmweather::rmw_do_all()}} with \code{\link[digest:digest]{digest::digest()}})}
 }
 \value{
 list with prepared data or model
@@ -33,7 +40,5 @@ Collect all data from store, prepare data, train random forest
 # TODO
 }
 \seealso{
-\itemize{
-\item \code{\link[rmweather:rmw_do_all]{rmweather::rmw_do_all()}}
-}
+\code{\link[rmweather:rmw_do_all]{rmweather::rmw_do_all()}}
 }

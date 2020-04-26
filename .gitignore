@@ -1,2 +1,8 @@
 .Rproj.user
+.Rhistory
+.RData
+inst/doc
+.renviron
+
+\.DS_Store
 tmp

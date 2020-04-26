@@ -4,7 +4,7 @@
 #' @param remote remote rOstluft store. Probably a [rOstluft::storage_s3_rds()]
 #' @param config config in list form from [yaml::read_yaml()]
 #'
-#' @return
+#' @return resulting tibble from `local$put()`
 #' @export
 #'
 #' @examples

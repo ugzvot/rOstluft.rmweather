@@ -38,7 +38,7 @@ prepare_observations_rf <- function(config, store) {
   observations <- dplyr::filter(observations, !!filter_arg)
 
   # check for number of observations per year
-  n_observations <- dplyr::count(observations, site, parameter, year = lubridate::year(starttime)) %>%
+  n_observations <- dplyr::count(observations, .data$site, .data$parameter, year = lubridate::year(.data$starttime)) %>%
     dplyr::mutate_if(is.factor, as.character)
 
   df <- tidyr::expand_grid(obs_explanatory_vars, year = config$years)
@@ -50,8 +50,6 @@ prepare_observations_rf <- function(config, store) {
   observations <- dplyr::left_join(observations, obs_explanatory_vars, by = c("site", "parameter"))
   observations <- dplyr::select(observations, date = "starttime", "variable", "value")
   observations <- tidyr::spread(observations, "variable", "value")
-
-  observations$test_factor <- as.factor( rep(c("test", "another", "one"), len = nrow(observations)))
 
   list(
     observations = observations,

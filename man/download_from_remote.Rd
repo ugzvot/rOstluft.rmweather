@@ -14,7 +14,7 @@ download_from_remote(local, remote, config)
 \item{config}{config in list form from \code{\link[yaml:read_yaml]{yaml::read_yaml()}}}
 }
 \value{
-
+resulting tibble from \code{local$put()}
 }
 \description{
 Download the necessary data from a remote store in a local
